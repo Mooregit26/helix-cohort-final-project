@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Event Management System{% endblock %}</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #1f2937;
+            padding: 18px 8%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        nav span {
+            color: #fbbf24;
+            margin-left: auto;
+        }
+
+        /* Main content */
+        .container {
+            width: 85%;
+            max-width: 1100px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Headings */
+        h1, h2, h3 {
+            color: #1f2937;
+        }
+
+        /* Links */
+        a {
+            color: #2563eb;
+        }
+
+        /* Buttons */
+        button,
+        input[type="submit"] {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover,
+        input[type="submit"]:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Messages */
+        .message {
+            padding: 12px 18px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            background-color: #fef3c7;
+            color: #92400e;
+            border-left: 5px solid #f59e0b;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav span {
+                margin-left: 0;
+            }
+
+            .container {
+                width: 92%;
+                padding: 20px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'event_list' %}">Events</a>
+
+        {% if user.is_authenticated %}
+    <span>Welcome {{ user.username }}</span>
+
+    <form method="post" action="{% url 'logout' %}" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+    {% else %}
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+    </nav>
+
+
+    <div class="container">
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+
+</body>
+</html>

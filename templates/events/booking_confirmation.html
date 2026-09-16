@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block title %}Booking Confirmed{% endblock %}
+
+{% block content %}
+
+<div class="confirmation-page">
+
+    <div class="confirmation-card">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h1>Booking Confirmed! 🎉</h1>
+
+        <p class="success-message">
+            Your booking has been successfully created.
+        </p>
+
+        <div class="booking-details">
+
+            <div class="booking-reference">
+                <span>Booking Reference</span>
+                <strong>{{ booking.booking_reference }}</strong>
+            </div>
+
+            <div class="detail-row">
+                <strong>Event:</strong>
+                <span>{{ booking.session.event.title }}</span>
+            </div>
+
+            <div class="detail-row">
+                <strong>Date:</strong>
+                <span>{{ booking.session.date }}</span>
+            </div>
+
+            <div class="detail-row">
+                <strong>Time:</strong>
+                <span>
+                    {{ booking.session.start_time }} -
+                    {{ booking.session.end_time }}
+                </span>
+            </div>
+
+        </div>
+
+        <a href="{% url 'event_list' %}" class="events-button">
+            ← Explore More Events
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .confirmation-page {
+        display: flex;
+        justify-content: center;
+        padding: 40px 0;
+    }
+
+    .confirmation-card {
+        width: 100%;
+        max-width: 600px;
+        text-align: center;
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .success-icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        background: #16a34a;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .confirmation-card h1 {
+        margin-bottom: 10px;
+        color: #166534;
+    }
+
+    .success-message {
+        color: #666;
+        font-size: 17px;
+        margin-bottom: 30px;
+    }
+
+    .booking-details {
+        text-align: left;
+        background: #f8fafc;
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+
+    .booking-reference {
+        text-align: center;
+        background: #e0f2fe;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .booking-reference span {
+        display: block;
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+    .booking-reference strong {
+        font-size: 22px;
+        color: #1d4ed8;
+        letter-spacing: 1px;
+    }
+
+    .detail-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 12px 0;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .detail-row:last-child {
+        border-bottom: none;
+    }
+
+    .events-button {
+        display: inline-block;
+        background: #2563eb;
+        color: white;
+        text-decoration: none;
+        padding: 13px 22px;
+        border-radius: 7px;
+        font-weight: bold;
+    }
+
+    .events-button:hover {
+        background: #1d4ed8;
+    }
+
+    @media (max-width: 600px) {
+
+        .confirmation-card {
+            padding: 30px 20px;
+        }
+
+        .detail-row {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+    }
+
+</style>
+
+{% endblock %}

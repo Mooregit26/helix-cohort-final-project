@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome | Event Management System{% endblock %}
+
+{% block content %}
+
+<div class="hero">
+
+    <h1>Welcome to the Event Management System</h1>
+
+    <p>
+        Discover exciting events, explore available sessions,
+        and book your place with ease.
+        </p>
+
+    <a href="{% url 'event_list' %}" class="hero-button">
+        Explore Upcoming Events
+    </a>
+
+</div>
+
+<style>
+
+    .hero {
+        text-align: center;
+        padding: 80px 30px;
+        border-radius: 10px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 20px;
+        color: #666;
+        max-width: 650px;
+        margin: 0 auto 35px;
+        line-height: 1.6;
+    }
+
+    .hero-button {
+        display: inline-block;
+        background-color: #2563eb;
+        color: white;
+        padding: 14px 28px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 17px;
+    }
+
+    .hero-button:hover {
+        background-color: #1d4ed8;
+    }
+
+    @media (max-width: 600px) {
+
+        .hero {
+            padding: 50px 20px;
+        }
+
+        .hero h1 {
+            font-size: 30px;
+        }
+
+    }
+
+</style>
+
+{% endblock %}
