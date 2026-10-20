@@ -34,16 +34,21 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com']
 
 INSTALLED_APPS = [
      # Cloudinary storage
-    'cloudinary_storage',
-    'django.contrib.admin',
+   'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Cloudinary
+    'cloudinary_storage',
+    'cloudinary',
+
+    # Project apps
     'accounts',
     'events',
-    'cloudinary',
+   
 ]
 
 MIDDLEWARE = [
@@ -162,3 +167,5 @@ STORAGES = {
         'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
     },
 }
+
+STATICFILES_STORAGE = STORAGES["staticfiles"]["BACKEND"]
